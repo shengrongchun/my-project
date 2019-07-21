@@ -3,18 +3,47 @@
 // import Vue from 'vue'
 // import App from './App'
 // import router from './router'
-import Vue from './demo/web-platforms/entry-runtime-with-compiler'
+import Vue from 'web/entry-runtime-with-compiler'
 
 Vue.config.productionTip = false
-
+const template = `
+<div class="app">
+  <input v-model="show" />
+  <div v-show="show">{{depa}} {{depb}}</div>
+  <div v-show="!show">{{depc}} {{depd}}</div>
+  {{depe}}
+</div>
+`
 /* eslint-disable no-new */
 new Vue({
   el: '#appId',
-  template: '<div class="classA">{{ hello }}</div>',
+  template,
   data () {
     return {
-      hello: 'vue hello'
+      show: true,
+      depa: 'a',
+      depb: 'b',
+      depc: 'c',
+      depd: 'd',
+      depe: 'e'
     }
+  },
+  mounted () {
+    console.log('mounted')
+  },
+  updated () {
+    console.log('updated')
+  },
+  created () {
+    // this.$watch('hello.a', (newV, oldV) => {
+    //   this.hello.a = 'change'
+    // }, {sync: false})
+    setTimeout(() => {
+      this.show = !this.show
+    }, 3000)
+    this.$nextTick(() => {
+      console.log('nextTick')
+    })
   }
 })
 // .$mount('#app')//同时有el:'#app'和$mount('#app')第二次挂载是更新
