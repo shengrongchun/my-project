@@ -1,6 +1,6 @@
 # my-project
 
-> A Vue.js project
+> A Vue.js project 解析vue源码项目
 
 ## Build Setup
 
